@@ -39,8 +39,9 @@ const RegistrationForm = ({ submit }) => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <Form>
-          <div className={css.form}>
+        <Form className={css.form}>
+          <p className={css.formText}>Register</p>
+          <div className={css.formFieldsWrapper}>
             <label htmlFor={nameId}>Name </label>
             <Field name="name" id={nameId} className={css.formField} />
             <ErrorMessage

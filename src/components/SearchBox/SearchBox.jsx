@@ -1,25 +1,48 @@
 import { useDispatch } from "react-redux";
 import css from "./SearchBox.module.css";
-import { changeFilter } from "../../redux/filters/slice";
+import {
+  changeField,
+  changeNameFilter,
+  changeNumberilter,
+} from "../../redux/filters/slice";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
+  const handleNameChange = (event) => {
     const inputValue = event.target.value.toLowerCase().trim();
-    dispatch(changeFilter(inputValue));
+    dispatch(changeNameFilter(inputValue));
+    dispatch(changeField("name"));
+  };
+
+  const handleNumberChange = (event) => {
+    const inputValue = event.target.value.toLowerCase().trim();
+    dispatch(changeNumberilter(inputValue));
+    dispatch(changeField("number"));
   };
 
   return (
-    <>
-      <p className={css.searchBoxText}>Find contact by name</p>
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="Enter name..."
-        className={css.searchBoxInput}
-      />
-    </>
+    <div className={css.searchBoxWrapper}>
+      <div>
+        <p className={css.searchBoxText}>Find contact by name</p>
+        <input
+          onChange={handleNameChange}
+          type="text"
+          placeholder="Enter name..."
+          className={css.searchBoxInput}
+        />
+      </div>
+
+      <div>
+        <p className={css.searchBoxText}>Find contact by number</p>
+        <input
+          onChange={handleNumberChange}
+          type="text"
+          placeholder="Enter number..."
+          className={css.searchBoxInput}
+        />
+      </div>
+    </div>
   );
 };
 

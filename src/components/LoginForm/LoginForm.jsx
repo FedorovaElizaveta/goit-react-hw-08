@@ -33,8 +33,9 @@ const LoginForm = ({ submit }) => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <Form>
-          <div className={css.form}>
+        <Form className={css.form}>
+          <p className={css.formText}>Login</p>
+          <div className={css.formFieldsWrapper}>
             <label htmlFor={emailId}>Email</label>
             <Field name="email" id={emailId} className={css.formField}></Field>
             <ErrorMessage

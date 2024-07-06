@@ -1,10 +1,30 @@
 import css from "./ContactList.module.css";
 import Contact from "../Contact/Contact";
 import { useSelector } from "react-redux";
-import { selectFilteredContacts } from "../../redux/contacts/selectors";
+import {
+  selectContacts,
+  selectFilteredContactsByName,
+  selectFilteredContactsByNumber,
+} from "../../redux/contacts/selectors";
+import { selectFilterField } from "../../redux/filters/selectors";
+import { useEffect, useState } from "react";
 
 const ContactList = () => {
-  const contacts = useSelector(selectFilteredContacts);
+  const contactItems = useSelector(selectContacts);
+  const contactsByName = useSelector(selectFilteredContactsByName);
+  const contactsByNumber = useSelector(selectFilteredContactsByNumber);
+  const filterField = useSelector(selectFilterField);
+  const [contacts, setContacts] = useState(contactItems);
+
+  useEffect(() => {
+    if (filterField === "name") {
+      setContacts(contactsByName);
+    } else if (filterField === "number") {
+      setContacts(contactsByNumber);
+    } else {
+      setContacts(contactItems);
+    }
+  }, [contactItems, contactsByName, contactsByNumber, filterField]);
 
   return (
     <ul className={css.contactList}>
