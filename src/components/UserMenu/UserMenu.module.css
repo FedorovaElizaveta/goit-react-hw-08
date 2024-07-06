@@ -1,0 +1,21 @@
+.userMenuWrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.userMenuBtn {
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+  height: 32px;
+  color: #fff;
+  background-color: #4d5ae5;
+  border: none;
+  border-radius: 30px;
+  transition: background-color 250ms ease-in-out;
+}
+
+.userMenuBtn:hover,
+.userMenuBtn:focus {
+  background-color: #404bbf;
+}

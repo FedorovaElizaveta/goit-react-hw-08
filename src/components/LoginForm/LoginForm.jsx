@@ -3,10 +3,6 @@ import { useId } from "react";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "Too short!")
-    .max(50, "Too long!")
-    .required("Required"),
   email: Yup.string()
     .min(3, "Too short!")
     .max(50, "Too long!")
@@ -17,8 +13,7 @@ const validationSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const RegistrationForm = ({ submit }) => {
-  const nameId = useId();
+const LoginForm = ({ submit }) => {
   const emailId = useId();
   const passwordId = useId();
 
@@ -30,7 +25,6 @@ const RegistrationForm = ({ submit }) => {
   return (
     <Formik
       initialValues={{
-        name: "",
         email: "",
         password: "",
       }}
@@ -38,22 +32,18 @@ const RegistrationForm = ({ submit }) => {
       validationSchema={validationSchema}
     >
       <Form>
-        <label htmlFor={nameId}>Name </label>
-        <Field name="name" id={nameId} />
-        <ErrorMessage name="name" component="span" />
-
-        <label htmlFor={emailId}>Email </label>
-        <Field name="email" id={emailId} />
+        <label htmlFor={emailId}>Email</label>
+        <Field name="email" id={emailId}></Field>
         <ErrorMessage name="email" component="span" />
 
-        <label htmlFor={passwordId}>Password </label>
-        <Field name="password" type="password" id={passwordId} />
+        <label htmlFor={passwordId}>Password</label>
+        <Field name="password" type="password" id={passwordId}></Field>
         <ErrorMessage name="password" component="span" />
 
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </Form>
     </Formik>
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;

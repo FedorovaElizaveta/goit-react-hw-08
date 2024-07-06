@@ -1,3 +1,4 @@
+import css from "./AppBar.module.css";
 import { useSelector } from "react-redux";
 import Navigation from "../Navigation/Navigation";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
@@ -8,7 +9,7 @@ const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <div>
+    <div className={css.appBoxContainer}>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </div>

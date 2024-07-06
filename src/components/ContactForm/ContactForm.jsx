@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import { useId } from "react";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,6 +19,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const ContactForm = () => {
+  const nameId = useId();
+  const numberId = useId();
   const dispatch = useDispatch();
 
   return (
@@ -35,16 +38,26 @@ const ContactForm = () => {
     >
       <Form className={css.contactForm}>
         <div className={css.contactFormInputWrapper}>
-          <label htmlFor="name">Name</label>
-          <Field name="name" type="text" className={css.contactFormInput} />
+          <label htmlFor={nameId}>Name</label>
+          <Field
+            name="name"
+            type="text"
+            id={nameId}
+            className={css.contactFormInput}
+          />
           <ErrorMessage
             name="name"
             component="span"
             className={css.contactFormError}
           />
 
-          <label htmlFor="number">Number</label>
-          <Field name="number" type="text" className={css.contactFormInput} />
+          <label htmlFor={numberId}>Number</label>
+          <Field
+            name="number"
+            type="text"
+            id={numberId}
+            className={css.contactFormInput}
+          />
           <ErrorMessage
             name="number"
             component="span"

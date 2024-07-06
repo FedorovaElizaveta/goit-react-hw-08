@@ -47,7 +47,28 @@ export const logout = createAsyncThunk(
   }
 );
 
-// export const refreshUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, { rejectedWithValue, getState }) => {}
-// );
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      setHeaderToken(auth.token);
+      const { data } = await axios("users/current");
+      return {
+        user: { name: data.name, email: data.email },
+        token: auth.token,
+      };
+    } catch (error) {
+      clearHeaderToken();
+      return rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
+  }
+);

@@ -1,0 +1,13 @@
+.authWrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.authLink {
+  color: #000;
+  text-decoration: none;
+}
+
+.authLinkActive {
+  color: #4d5ae5;
+}
