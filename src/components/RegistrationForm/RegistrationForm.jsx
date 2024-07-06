@@ -1,3 +1,4 @@
+import css from "./RegistrationForm.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
@@ -28,31 +29,53 @@ const RegistrationForm = ({ submit }) => {
   };
 
   return (
-    <Formik
-      initialValues={{
-        name: "",
-        email: "",
-        password: "",
-      }}
-      onSubmit={handleSubmit}
-      validationSchema={validationSchema}
-    >
-      <Form>
-        <label htmlFor={nameId}>Name </label>
-        <Field name="name" id={nameId} />
-        <ErrorMessage name="name" component="span" />
+    <div className={css.formWrapper}>
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          password: "",
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        <Form>
+          <div className={css.form}>
+            <label htmlFor={nameId}>Name </label>
+            <Field name="name" id={nameId} className={css.formField} />
+            <ErrorMessage
+              name="name"
+              component="span"
+              className={css.formError}
+            />
 
-        <label htmlFor={emailId}>Email </label>
-        <Field name="email" id={emailId} />
-        <ErrorMessage name="email" component="span" />
+            <label htmlFor={emailId}>Email </label>
+            <Field name="email" id={emailId} className={css.formField} />
+            <ErrorMessage
+              name="email"
+              component="span"
+              className={css.formError}
+            />
 
-        <label htmlFor={passwordId}>Password </label>
-        <Field name="password" type="password" id={passwordId} />
-        <ErrorMessage name="password" component="span" />
-
-        <button type="submit">Register</button>
-      </Form>
-    </Formik>
+            <label htmlFor={passwordId}>Password </label>
+            <Field
+              name="password"
+              type="password"
+              id={passwordId}
+              className={css.formField}
+            />
+            <ErrorMessage
+              name="password"
+              component="span"
+              className={css.formError}
+            />
+          </div>
+          <button type="submit" className={css.formBtn}>
+            Register
+          </button>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 

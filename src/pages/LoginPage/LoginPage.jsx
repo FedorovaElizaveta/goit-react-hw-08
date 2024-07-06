@@ -1,3 +1,4 @@
+import css from "./LoginPage.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
 import LoginForm from "../../components/LoginForm/LoginForm";
@@ -10,7 +11,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className={css.pageWrapper}>
       <LoginForm submit={handleLogin} />
     </div>
   );

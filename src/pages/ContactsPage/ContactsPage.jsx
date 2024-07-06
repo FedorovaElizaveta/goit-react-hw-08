@@ -1,3 +1,4 @@
+import css from "./ContactsPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
 import { useEffect } from "react";
@@ -38,7 +39,7 @@ const ContactsPage = () => {
   }, [error]);
 
   return (
-    <div>
+    <div className={css.pageWrapper}>
       <div>
         <Toaster />
       </div>

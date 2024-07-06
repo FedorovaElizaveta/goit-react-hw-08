@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
-// import AppBar from "./components/AppBar/AppBar";
 import { useDispatch } from "react-redux";
 import { refreshUser } from "./redux/auth/operations";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";

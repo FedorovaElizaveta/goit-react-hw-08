@@ -13,7 +13,7 @@ const UserMenu = () => {
 
   return (
     <div className={css.userMenuWrapper}>
-      <p>Welcome, {user.name}</p>
+      <p>Welcome, {user.name}!</p>
       <button onClick={handleLogout} className={css.userMenuBtn}>
         Logout
       </button>
