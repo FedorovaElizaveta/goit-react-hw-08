@@ -5,9 +5,11 @@ import {
   selectContacts,
   selectFilteredContactsByName,
   selectFilteredContactsByNumber,
+  selectIsItemDeleted,
 } from "../../redux/contacts/selectors";
 import { selectFilterField } from "../../redux/filters/selectors";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 const ContactList = () => {
   const contactItems = useSelector(selectContacts);
@@ -15,6 +17,23 @@ const ContactList = () => {
   const contactsByNumber = useSelector(selectFilteredContactsByNumber);
   const filterField = useSelector(selectFilterField);
   const [contacts, setContacts] = useState(contactItems);
+
+  const isItemDeleted = useSelector(selectIsItemDeleted);
+  const toastShownRef = useRef(false);
+
+  useEffect(() => {
+    if (isItemDeleted && !toastShownRef.current) {
+      toast.success("Contact successfully deleted!", {
+        style: {
+          minWidth: "250px",
+          borderRadius: 15,
+        },
+      });
+      toastShownRef.current = true;
+    } else if (!isItemDeleted) {
+      toastShownRef.current = false;
+    }
+  }, [isItemDeleted]);
 
   useEffect(() => {
     if (filterField === "name") {

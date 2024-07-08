@@ -4,11 +4,15 @@ import { fetchContacts, addContact, deleteContact } from "./operations";
 const handlePending = (state) => {
   state.loading = true;
   state.error = null;
+  state.isItemAdded = null;
+  state.isItemDeleted = null;
 };
 
 const handleRejected = (state, { error }) => {
   state.loading = false;
   state.error = error.message;
+  state.isItemAdded = null;
+  state.isItemDeleted = null;
 };
 
 const contactSlice = createSlice({
@@ -17,6 +21,8 @@ const contactSlice = createSlice({
     items: [],
     loading: false,
     error: null,
+    isItemAdded: null,
+    isItemDeleted: null,
   },
   extraReducers: (builder) =>
     builder
@@ -31,6 +37,7 @@ const contactSlice = createSlice({
       .addCase(addContact.fulfilled, (state, { payload }) => {
         state.items.push(payload);
         state.loading = false;
+        state.isItemAdded = true;
       })
       .addCase(addContact.rejected, handleRejected)
 
@@ -38,6 +45,7 @@ const contactSlice = createSlice({
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
         state.items = state.items.filter((item) => item.id !== payload.id);
         state.loading = false;
+        state.isItemDeleted = true;
       })
       .addCase(deleteContact.rejected, handleRejected),
 });
