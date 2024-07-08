@@ -3,10 +3,12 @@ import { register, login, logout, refreshUser } from "./operations";
 
 const handlePending = (state) => {
   state.isRefreshing = true;
+  state.error = null;
 };
 
-const handleRejected = (state) => {
+const handleRejected = (state, { error }) => {
   state.isRefreshing = false;
+  state.error = error.message;
 };
 
 const authSlice = createSlice({
@@ -19,6 +21,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    error: null,
   },
   extraReducers: (builder) => {
     builder

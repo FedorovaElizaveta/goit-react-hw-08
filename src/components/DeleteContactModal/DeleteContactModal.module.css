@@ -1,0 +1,39 @@
+.deleteModal {
+  width: 400px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  text-align: center;
+}
+
+.deleteOptionsList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.deleteOptionsItem:first-child .deleteOptionsBtn {
+  color: #fff;
+  background-color: #4d5ae5;
+  border: none;
+}
+
+.deleteOptionsList .deleteOptionsBtn {
+  font-size: 20px;
+  color: #000;
+  width: 100px;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 30px;
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out,
+    border-color 250ms ease-in-out;
+}
+
+.deleteOptionsList .deleteOptionsBtn:hover,
+.deleteOptionsList .deleteOptionsBtn:focus {
+  color: #fafafa;
+  background-color: #404bbf;
+  border-color: #404bbf;
+}

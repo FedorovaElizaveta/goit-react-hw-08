@@ -5,6 +5,7 @@ import {
   selectIsRefreshing,
 } from "../../redux/auth/selectors";
 import { Navigate, Outlet } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 const PrivateRoute = () => {
   const token = useSelector(selectToken);
@@ -12,7 +13,7 @@ const PrivateRoute = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   if (isRefreshing) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (!isLoggedIn && !token) {

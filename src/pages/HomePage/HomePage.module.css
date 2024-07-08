@@ -1,3 +1,9 @@
 .pageWrapper {
   padding: 30px;
 }
+
+.HomePageText {
+  font-size: 50px;
+  text-align: center;
+  margin-top: 20%;
+}
